@@ -16,19 +16,19 @@ let collection = []
         return album;
     }
 //function to add tracks objects to trackList arry in collection.
-function addTrackToo( albumTitle, trackName, duration ){
-    console.log( 'in addTrackToo' );
-    for ( let i = 0; i < collection.length; i++ ) {
-        if ( albumTitle === collection[i].title ) {
-            let track = {
-                trackName: trackName,
-                trackDuration: duration
+    function addTrackToo( albumTitle, trackName, duration ){
+        console.log( 'in addTrackToo' );
+        for ( let i = 0; i < collection.length; i++ ) {
+            if ( albumTitle === collection[i].title ) {
+                let track = {
+                    trackName: trackName,
+                    trackDuration: duration
+                }
+                collection[i].trackList.push( track );
             }
-            collection[i].trackList.push( track );
         }
+        return true;
     }
-    return true;
-}
 
 //Test call 
 console.log( addToCollection( 'Reborn', 'Kavinsky', 2022, ) );
@@ -76,20 +76,33 @@ console.log( findByArtist( 'Pink' ) );
 
 
 //Function to search by year and artist 
-function search( artistName, yearPub ){
+function search( artistName, yearPub, trackName ){
     console.log('in search');
     let artistMatch = [];
-    for ( let i = 0; i < collection.length; i++ ){
-        if ( artistName === collection[i].artist && yearPub === collection[i].yearPublished ){
-            artistMatch.push(collection[i]);
-        } 
-    }
-    if ( artistMatch.length === 0 ) {
-        console.log( artistMatch, 'Empty Array' );
-    }
 
-    return artistMatch;
+    if( trackName === undefined ){
 
+        for ( let i = 0; i < collection.length; i++ ){
+            if ( artistName === collection[i].artist && yearPub === collection[i].yearPublished ){
+                artistMatch.push(collection[i]);
+            } 
+        }
+        if ( artistMatch.length === 0 ) {
+            console.log( artistMatch, 'Empty Array' );
+        }
+
+    }else{
+        let hitArray = [];
+        for ( let i = 0; i < collection.length; i++ ) {
+            for ( let n = 0; n < collection[i].trackList.length; n++ ) {
+                if ( trackName === collection[i].trackList[n].trackName ) {
+                    hitArray.push( collection[i].trackList[n] );
+                }
+            }
+        }
+        console.log( `The song ${hitArray[0].trackName} is in the collection and it's duration is ${hitArray[0].trackDuration} ` );
+    }
+    return true;
 }
 //Test Call
 console.log( search( 'Ghost', 2022 ) );
@@ -141,6 +154,8 @@ console.log( collection );
 
 
 
+console.log( search( 'Kavinsky', 2022, 'Pulsar') );
+console.log( search( 'Pink Floyd', 1979, 'Another Brick in the Wall, Pt.1') );
 
 
 
