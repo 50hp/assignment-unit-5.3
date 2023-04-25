@@ -63,8 +63,6 @@ console.log( collection );
         for (let i = 0; i < ( collection.length ); i++) {
             if (collection[i].artist === artistName ) {
                 artistMatch.push( collection[i] );
-            }else {
-                console.log('No Matches');
             }
         }
         return artistMatch;
@@ -78,9 +76,9 @@ console.log( findByArtist( 'Pink' ) );
 //Function to search by year and artist 
 function search( artistName, yearPub, trackName ){
     console.log('in search');
-    let artistMatch = [];
 
     if( trackName === undefined ){
+        let artistMatch = [];
 
         for ( let i = 0; i < collection.length; i++ ){
             if ( artistName === collection[i].artist && yearPub === collection[i].yearPublished ){
