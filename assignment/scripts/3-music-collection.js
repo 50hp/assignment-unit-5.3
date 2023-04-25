@@ -73,7 +73,7 @@ console.log( findByArtist( 'Pink Floyd' ) );
 console.log( findByArtist( 'Pink' ) );
 
 
-//Function to search by year and artist 
+//Function to search by year and artist or by trackName. 
 function search( artistName, yearPub, trackName ){
     console.log('in search');
 
