@@ -9,13 +9,38 @@ let collection = []
         let album = {
             title: title,
             artist: artist,
-            yearPublished: yearPublished
+            yearPublished: yearPublished,
+            trackList: []
         }
         collection.push( album );
         return album;
     }
+//function to add tracks objects to trackList arry in collection.
+function addTrackToo( albumTitle, trackName, duration ){
+    console.log( 'in addTrackToo' );
+    for ( let i = 0; i < collection.length; i++ ) {
+        if ( albumTitle === collection[i].title ) {
+            let track = {
+                trackName: trackName,
+                trackDuration: duration
+            }
+            return collection[i].trackList.push( track );
+        }else {
+           return 'No ablums that match imput';
+        }
+    } 
+}
+
 //Test call 
-console.log( addToCollection( 'Reborn', 'Kavinsky', 2022 ) );
+console.log( addToCollection( 'Reborn', 'Kavinsky', 2022, ) );
+console.log( addTrackToo('Reborn', 'Pulsar', '3:34' ) );
+console.log( addTrackToo('Reborn', 'Reborn', '3:41' ) );
+console.log( addTrackToo('Reborn', 'Renegade', '3:18' ) );
+console.log( addTrackToo('Reborn', 'Trigger', '3:39' ) );
+console.log( addTrackToo('Rebbborn', 'Pulsar', '3:30' ) );
+console.log( collection );
+
+
 console.log( addToCollection( 'The Dark Side of the Moon', 'Pink Floyd', 1973 ) );
 console.log( addToCollection( 'The Mollusk', 'Ween', 1997 ) );
 console.log( addToCollection( 'Dreanland', 'Glass Animals', 2020 ) );
@@ -28,6 +53,7 @@ console.log( collection );
         console.log('in showCollection' );
         for (let i = 0; i < (showInput.length); i++){
             console.log(` ${showInput[i].title} by ${showInput[i].artist}, published in ${showInput[i].yearPublished} ` );
+            console.log( `${showInput[i].trackList}` );
         }
 
         return;
