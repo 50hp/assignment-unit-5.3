@@ -44,14 +44,15 @@ console.log( collection );
         console.log('in showCollection' );
         for (let i = 0; i < (showInput.length); i++){
             console.log(` ${showInput[i].title} by ${showInput[i].artist}, published in ${showInput[i].yearPublished} ` );
-            console.log( `${showInput[i].trackList}` );
+            for (let n = 0; n < ( showInput[i].trackList.length ); n++ ) {
+                console.log( `${n}. ${showInput[i].trackList[n].trackName}: ${showInput[i].trackList[n].trackDuration}` );
+            }
         }
 
-        return;
+        return true;
     }
 
 //Test call
-console.log( showCollection( collection ) );
 
 
 
@@ -133,10 +134,7 @@ console.log( addTrackToo( 'IMPERA', 'Kaisarion', '5:02' ) );
 console.log( addTrackToo( 'IMPERA', 'Spillways', '3:16' ) );
 console.log( addTrackToo( 'IMPERA', 'Call Me Little Sunshine', '4:44' ) );
 console.log( addTrackToo( 'IMPERA', 'Hunters Moon', '3:16' ) );
-
-
-
-
+console.log( showCollection( collection ) );
 console.log( collection );
 
 
