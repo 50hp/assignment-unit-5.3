@@ -88,7 +88,7 @@ function search( artistName, yearPub, trackName ){
         if ( artistMatch.length === 0 ) {
             console.log( artistMatch, 'Empty Array' );
         }
-
+        return artistMatch;
     }else{
         let hitArray = [];
         for ( let i = 0; i < collection.length; i++ ) {
@@ -99,11 +99,10 @@ function search( artistName, yearPub, trackName ){
             }
         }
         console.log( `The song ${hitArray[0].trackName} is in the collection and it's duration is ${hitArray[0].trackDuration} ` );
+    return hitArray;
     }
-    return true;
 }
 //Test Call
-console.log( search( 'Ghost', 2022 ) );
 console.log( search( 'Justice', 2007 ) );
 console.log( search( 'Pink Floyd', 1979) );
 
@@ -152,6 +151,7 @@ console.log( collection );
 
 
 
+console.log( search( 'Ghost', 2022 ) );
 console.log( search( 'Kavinsky', 2022, 'Pulsar') );
 console.log( search( 'Pink Floyd', 1979, 'Another Brick in the Wall, Pt.1') );
 
