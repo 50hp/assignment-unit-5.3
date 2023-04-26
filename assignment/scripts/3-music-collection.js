@@ -1,33 +1,33 @@
 console.log('***** Music Collection *****')
 
 
-let collection = []
+let collection = [] //empty array to store all objects created.
 
 //function to add objects to array collection.
-    function addToCollection( title, artist, yearPublished ){
-        console.log( 'in addToCollection' );
-        let album = {
+    function addToCollection( title, artist, yearPublished ){  //takes strings as inputs to be added to an object. 
+        console.log( 'in addToCollection' );    //logs out 'in addToCollection' to show which function is running.
+        let album = {                           //the album object is created with the nessesary properties. 
             title: title,
             artist: artist,
             yearPublished: yearPublished,
-            trackList: []
+            trackList: []                       //creates an empty array for later use when tracks are added to an album in function addTrackToo.
         }
-        collection.push( album );
-        return album;
+        collection.push( album );               //pushes the album object into the collection array.
+        return album;                           //returns the created album.
     }
 //function to add tracks objects to trackList arry in collection.
-    function addTrackToo( albumTitle, trackName, duration ){
-        console.log( 'in addTrackToo' );
-        for ( let i = 0; i < collection.length; i++ ) {
-            if ( albumTitle === collection[i].title ) {
+    function addTrackToo( albumTitle, trackName, duration ){        //takes the album name, track name and the duration as inputs.
+        console.log( 'in addTrackToo' );                            //logs out 'in addTrackToo' to show which function is running.
+        for ( let i = 0; i < collection.length; i++ ) {             //loops through the collection array to search for matching albums.
+            if ( albumTitle === collection[i].title ) {             //if a match is found a track object is created using the trackName and duration inputs.
                 let track = {
                     trackName: trackName,
                     trackDuration: duration
                 }
-                collection[i].trackList.push( track );
+                collection[i].trackList.push( track );              //adds the track object to the trackList array in album object in the collection array.
             }
         }
-        return true;
+        return collection;                                          //returns the current collection
     }
 
 //Test call 
