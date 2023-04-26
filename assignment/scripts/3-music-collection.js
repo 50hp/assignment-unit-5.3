@@ -72,39 +72,58 @@ console.log( findByArtist( 'Ween' ) );
 console.log( findByArtist( 'Pink Floyd' ) );
 console.log( findByArtist( 'Pink' ) );
 
+//Example object 
+//inputObject{
+    //artist:  ,
+    //year:    ,
+    //album:   ,
+    //trackName: 
+   // }
+
 
 //Function to search by year and artist or by trackName. 
-function search( artistName, yearPub, trackName ){
+function search( inputObject ){
     console.log('in search');
-
-    if( trackName === undefined ){
-        let artistMatch = [];
-
-        for ( let i = 0; i < collection.length; i++ ){
-            if ( artistName === collection[i].artist && yearPub === collection[i].yearPublished ){
-                artistMatch.push(collection[i]);
-            } 
-        }
-        if ( artistMatch.length === 0 ) {
-            console.log( artistMatch, 'Empty Array' );
+    let artistMatch = [];
+    if( ! inputObject ) {
+        return collection;
+    }
+    if( inputObject.trackName === undefined ){
+        for ( let x of collection ) {
+            let i=0;
+            if (inputObject.artist != undefined && inputObject.artist === x.artist ){
+                i++;
+            }
+            if (inputObject.year != undefined && inputObject.year === x.yearPublished ) {
+                i++;
+            }
+            if (inputObject.album != undefined && inputObject.album === x.title ) {
+                i++;
+            }
+            if (Object.keys( inputObject ).length === i ){
+                artistMatch.push( x );
+            }
         }
         return artistMatch;
+
     }else{
-        let hitArray = [];
         for ( let i = 0; i < collection.length; i++ ) {
             for ( let n = 0; n < collection[i].trackList.length; n++ ) {
-                if ( trackName === collection[i].trackList[n].trackName ) {
-                    hitArray.push( collection[i].trackList[n] );
+                if ( inputObject.trackName === collection[i].trackList[n].trackName ) {
+                    artistMatch.push( collection[i].trackList[n] );
                 }
             }
         }
-        console.log( `The song ${hitArray[0].trackName} is in the collection and it's duration is ${hitArray[0].trackDuration} ` );
-    return hitArray;
+        console.log( `The song ${artistMatch[0].trackName} is in the collection and it's duration is ${artistMatch[0].trackDuration} ` );
+        return artistMatch;
     }
 }
 //Test Call
-console.log( search( 'Justice', 2007 ) );
-console.log( search( 'Pink Floyd', 1979) );
+console.log( search( {artist:'Justice', year: 2007,} ) )
+console.log( search( {artist: 'Pink Floyd', year: 1979,} ) );
+console.log( search(  ) );
+console.log( search( {artist: 'Pink Floyd', album: 'The Wall'} ) );
+console.log( search( {year: 2022,} ) );
 
 
 
@@ -148,13 +167,22 @@ console.log( showCollection( collection ) );
 console.log( collection );
 
 
+//Example object 
+//inputObject{
+    //artist:  ,
+    //year:    ,
+    //album:   ,
+    //trackName: 
+   // }
 
 
 
-console.log( search( 'Ghost', 2022 ) );
-console.log( search( 'Kavinsky', 2022, 'Pulsar') );
-console.log( search( 'Pink Floyd', 1979, 'Another Brick in the Wall, Pt.1') );
 
+console.log( search( {artist: 'Ghost', year: 2022} ) );
+console.log( search( {artist: 'Kavinsky', year: 2022, trackName: 'Pulsar' } ) );
+console.log( search( {artist: 'Pink Floyd', yera: 1979, trackName: 'Another Brick in the Wall, Pt.1'} ) );
+console.log( search( {album: 'IMPERA'} ) );
+console.log( search( {trackName: 'Dreamland'} ) );
 
 
 
